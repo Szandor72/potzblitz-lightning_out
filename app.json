@@ -1,0 +1,17 @@
+{
+  "name": "Lightning Out Sample",
+  "description": "A simple Node.js App to Host Lightning Out",
+  "repository": "https://github.com/dcarroll/heroku-lightning.git",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["lightning", "lightning out"],
+  "env": {
+  	"APPID": {
+  		"description": "The connected app id that you create(d).",
+  		"value": ""
+  	},
+  	"LOAPP": {
+  		"description": "Name of the Lightning Out dependency app (c:myApp).",
+  		"value": "c:loTest"
+  	}
+  }
+}

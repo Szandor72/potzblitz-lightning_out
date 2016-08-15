@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Lightning on Heroku</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<div class="jumbotron">
+				<h1>Lightning Out on Heroku</h1>
+				<button class="btn btn-primary btn-lg" onclick="forceLogin()">
+					Login to Salesforce
+				</button>
+				<button id="chatterFeedButton" class="btn btn-primary btn-lg" 
+						onclick="createChatterFeed('NEWS')" style="display: none">
+					Create Chatter Feed
+				</button>
+			</div>
+			<div id="chatterFeed"/>
+		</div>
+		<script>
+			var config = {
+				appId: "<%= appId %>",
+				loApp: "<%= loApp %>"
+			};
+		</script>
+		<script src="./javascripts/force.oauth.js"></script>
+		<script src="./javascripts/app.js"></script>
+		<script src="https://ltngout-dev-ed.my.salesforce.com/lightning/lightning.out.js"></script>
+	</body>
+</html>
