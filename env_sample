@@ -8,8 +8,14 @@
 # The Consumer Key for the SFDC Connected App for OAuth
 APPID=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
+# The Consumer Secret
+SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 # The namespace:name of the app to use for Lightning Out
-LOAPP=c:loTest
+LOAPP=szDev:loTest
+
+# OAUTH2 callback url
+CALLBACKURL=myapp.company.com/callback
 
 # HTTP Port
 PORT=5000

@@ -6,11 +6,19 @@
   "keywords": ["lightning", "lightning out"],
   "env": {
   	"APPID": {
-  		"description": "The connected app id that you create(d).",
+  		"description": "The connected app id that you create(d). Make sure it is CORS enabled.",
   		"value": ""
   	},
   	"LOAPP": {
-  		"description": "Name of the Lightning Out dependency app (c:myApp).",
+  		"description": "Name of the Lightning Out dependency app (myNamespace:myApp).",
+  		"value": "c:loTest"
+  	},
+    "SECRET": {
+  		"description": " The Consumer Secret",
+  		"value": ""
+  	},
+  	"CALLBACKURL": {
+  		"description": "The OAUTH callback url",
   		"value": "c:loTest"
   	}
   }
