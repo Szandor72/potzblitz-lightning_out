@@ -11,6 +11,6 @@
     "fs": "0.0.2",
     "https": "^1.0.0",
     "node-env-file": "^0.1.7",
-    "salesforce-oauth2": "0.1.8"
+    "salesforce-oauth2-flow": "1.0.2"
   }
 }

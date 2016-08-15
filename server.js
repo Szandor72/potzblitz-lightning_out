@@ -3,7 +3,17 @@ var http = require('http');
 var https = require('https');
 var fs = require('fs');
 var env = require('node-env-file');
-var oauth2 = require('salesforce-oauth2');
+
+let Oauth = require('salesforce-oauth2-flow');
+
+let oauth = new Oauth();
+
+const parameters = {
+  client_id: process.env.APPID,
+  client_secret: process.env.SECRET,
+  username: 'sz-dev@shore.com',
+  password: 'RuachElohim_131',
+});
 
 // Load environment variables for localhost
 try {
@@ -20,59 +30,20 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
-  var uri = oauth2.getAuthorizationUrl({
-      redirect_uri: process.env.CALLBACKURL,
-      client_id: process.env.APPID,
-      scope: 'full'
-  });
+  var myToken = oauth.getAccessToken(parameters).then(body => {
+    let accessToken = body.access_token;
+    let instanceUrl = body.instance_url;
+    }).catch((error => {
+      console.error('oauth get Access Token error ' + error);
+    });
     res.render('index', {
         appId: process.env.APPID,
-        loApp: process.env.LOAPP
+        loApp: process.env.LOAPP,
+        token : myToken
     });
-  return response.redirect(uri);
 });
 
 app.get('/oauthcallback', function(req, res) {
-    var authorizationCode = request.param('code');
-
-    oauth2.authenticate({
-        redirect_uri: process.env.CALLBACKURL,
-        client_id: process.env.APPID,
-        client_secret: process.env.SECRET,
-        code: authorizationCode
-    }, function(error, payload) {
-        /*
-
-        The payload should contain the following fields:
-
-        id 				A URL, representing the authenticated user,
-                        which can be used to access the Identity Service.
-
-        issued_at		The time of token issue, represented as the
-                        number of seconds since the Unix epoch
-                        (00:00:00 UTC on 1 January 1970).
-
-        refresh_token	A long-lived token that may be used to obtain
-                        a fresh access token on expiry of the access
-                        token in this response.
-
-        instance_url	Identifies the Salesforce instance to which API
-                        calls should be sent.
-
-        access_token	The short-lived access token.
-
-
-        The signature field will be verified automatically and can be ignored.
-
-        At this point, the client application can use the access token to authorize requests
-        against the resource server (the Force.com instance specified by the instance URL)
-        via the REST APIs, providing the access token as an HTTP header in
-        each request:
-
-        Authorization: OAuth 00D50000000IZ3Z!AQ0AQDpEDKYsn7ioKug2aSmgCjgrPjG...
-        */
-    });
-    // have both authentications
     res.render('oauthcallback', {});
 });
 
