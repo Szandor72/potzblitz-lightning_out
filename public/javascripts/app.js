@@ -58,7 +58,7 @@ var howdyHeroku = function(x) {
 };
 
 var putId = function(id) {
-    var appEvent = $A.get("e.c:DisplayCaseEvt");
+    var appEvent = $A.get("e.szDev:DisplayCaseEvt");
     appEvent.setParams({
         "myVal": id
     });
