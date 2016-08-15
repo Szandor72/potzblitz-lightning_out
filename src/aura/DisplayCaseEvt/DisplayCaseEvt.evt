@@ -1,5 +1,0 @@
-<aura:event type="APPLICATION">
-    <aura:attribute name="myVal" type="String"/>
-</aura:event>
-
-<!--markup://c:DisplayCaseEvt : Unable to find 'handleApplicationEventFired' on 'compound://c.DisplayCase'.-->

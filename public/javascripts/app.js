@@ -45,7 +45,7 @@ var myComponent;
 function createComponent(type, subjectId) {
     setupLightning(function() {
         console.log('+++createComponent ');
-        var myComponent = $Lightning.createComponent("c:DisplayCase", {
+        var myComponent = $Lightning.createComponent("szDev:DisplayCase", {
             type: type,
             subjectId: subjectId
         }, "componentDiv");
