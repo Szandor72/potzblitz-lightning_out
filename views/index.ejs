@@ -1,55 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
 
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Lightning Out, node on Heroku</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="utf-8">
+
+  <title>POTZBLITZ</title>
+  <meta name="description" content="Munich Salesforce Developer Group Lightning Out Example by @ch_sz_knapp">
+  <meta name="author" content="@ch_sz_knapp">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="jumbotron">
-            <button id="forceLogin" class="btn btn-primary" onclick="forceLogin()">
-                OAuth SFDC
-            </button>
-            <br/>
-            <br/>
-            <button id="getComponentButton" class="btn btn-primary"
-                onclick="createComponent()"
-                style="display: none">
-                get Component
-            </button>
-            <br/> ++++++++++++++++++++++++++++++++++++++++++
-            <br/>
-            <br/>
-            <div id="componentDiv"></div>
-            <br/>
-            <br/>
-            <div id="caseXferButton" style="display: none">
-                ++++++++++++++++++++++++++++++++++++++++++
-                <br/><b>Case List on Heroku.</b> Click to interact with Lightning Component
-                <br/>
-                <ul id="caseList"></ul>
-            </div>
+  <div class="container">
+    <h1>Lightning Out Demo<h1/>
+      <div class="row">
+        <!-- OnSite App -->
+        <div class="col-md-6">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">My local awesome App</h3>
+              </div>
+              <div class="panel-body" style="height:500px;" id="local-app">
+                <p>
+                  <ul>
+                    <li>Button: launch Lightning App</li>
+                    <li>get authenticated</li>
+                    <li>Construct Lightning App</li>
+                    <li>Listen for Errors</li>
+                    <li>Display modal on successful completion of Lightning App</li>
+                  </ul>
+                </p>
+              </div>
+              <div class="panel-footer"><h4><span class="label label-info">This runs locally</span></h4></div>
+          </div>
         </div>
-        <div align="right">
-            <li>DOM Manipulation: "If you didn't create it, don't touch it" - Doug Chasman</li>
-            <li>The juice has to be worth the squeeze</li>
-            <li><%= loApp %></li>
+        <!-- Lightning App -->
+        <div class="col-md-6">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">My lightning awesome App</h3>
+              </div>
+              <div class="panel-body" style="height:500px;" id="lightning-app">
+                <p>
+                  <ul>
+                    <li>Receive some kind of id</li>
+                    <li>Do some magic</li>
+                    <li>communicate Errors</li>
+                    <li>Send success to local App if process completes sucessfully</li>
+                  </ul>
+                </p>
+              </div>
+              <div class="panel-footer"><h4><span class="label label-success">This runs on Salesforce</span></h4></div>
+          </div>
         </div>
-    </div>
+      </div>
+  </div>
+  <div class="container">
+      <div class="jumbotron">
+          <button id="forceLogin" class="btn btn-primary" onclick="forceLogin()">
+              OAuth SFDC
+          </button>
+          <br/>
+          <br/>
+          <button id="getComponentButton" class="btn btn-primary"
+              onclick="createComponent()"
+              style="display: none">
+              get Component
+          </button>
+          <br/> ++++++++++++++++++++++++++++++++++++++++++
+          <br/>
+          <br/>
+          <div id="componentDiv"></div>
+          <br/>
+          <br/>
+          <div id="caseXferButton" style="display: none">
+              ++++++++++++++++++++++++++++++++++++++++++
+              <br/><b>Case List on Heroku.</b> Click to interact with Lightning Component
+              <br/>
+              <ul id="caseList"></ul>
+          </div>
+      </div>
+      <div align="right">
+          <li>DOM Manipulation: "If you didn't create it, don't touch it" - Doug Chasman</li>
+          <li>The juice has to be worth the squeeze</li>
+          <li><%= loApp %></li>
+      </div>
+  </div>
+
+
     <script>
     var config = {
         appId: "<%= appId %>",
         loApp: "<%= loApp %>"
     };
     </script>
-
     <script src="./javascripts/force.oauth.js"></script>
     <script src="./javascripts/app.js"></script>
     <script src="https://ltngout-dev-ed.my.salesforce.com/lightning/lightning.out.js"></script>
-
 </body>
-
 </html>
