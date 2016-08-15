@@ -1,32 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>Lightning on Heroku</title>
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-	</head>
-	<body>
-		<div class="container">
-			<div class="jumbotron">
-				<h1>Lightning Out on Heroku</h1>
-				<button class="btn btn-primary btn-lg" onclick="forceLogin()">
-					Login to Salesforce
-				</button>
-				<button id="chatterFeedButton" class="btn btn-primary btn-lg" 
-						onclick="createChatterFeed('NEWS')" style="display: none">
-					Create Chatter Feed
-				</button>
-			</div>
-			<div id="chatterFeed"/>
-		</div>
-		<script>
-			var config = {
-				appId: "<%= appId %>",
-				loApp: "<%= loApp %>"
-			};
-		</script>
-		<script src="./javascripts/force.oauth.js"></script>
-		<script src="./javascripts/app.js"></script>
-		<script src="https://ltngout-dev-ed.my.salesforce.com/lightning/lightning.out.js"></script>
-	</body>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lightning Out, node on Heroku</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <button id="forceLogin" class="btn btn-primary" onclick="forceLogin()">
+                OAuth SFDC
+            </button>
+            <br/>
+            <br/>
+            <button id="getComponentButton" class="btn btn-primary" 
+                onclick="createComponent()" 
+                style="display: none">
+                get Component
+            </button>
+            <br/> ++++++++++++++++++++++++++++++++++++++++++
+            <br/>
+            <br/>
+            <div id="componentDiv"></div>
+            <br/>
+            <br/>
+            <div id="caseXferButton" style="display: none">
+                ++++++++++++++++++++++++++++++++++++++++++
+                <br/><b>Case List on Heroku.</b> Click to interact with Lightning Component
+                <br/>
+                <ul id="caseList"></ul>
+            </div>
+        </div>
+        <div align="right">
+            <li>lmeyer-a6ke@force.com</li>
+            <li>My Domain</li>
+            <li>Connected App</li>
+            <li>OAuth</li>
+            <li>CORS</li>
+            <li>Content-​Security-​Policy HTTP header</li>
+            <li>virtual dom</li>
+            <li>DOM Manipulation: "If you didn't create it, don't touch it" - Doug Chasman</li>
+            <li>The juice has to be worth the squeeze</li>
+        </div>
+    </div>
+    <script>
+    var config = {
+        appId: "<%= appId %>",
+        loApp: "<%= loApp %>"
+    };
+    </script>
+
+    <script src="./javascripts/force.oauth.js"></script>
+    <script src="./javascripts/app.js"></script>
+    <script src="https://ltngout-dev-ed.my.salesforce.com/lightning/lightning.out.js"></script>
+
+</body>
+
 </html>

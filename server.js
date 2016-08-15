@@ -6,7 +6,7 @@ var env = require('node-env-file');
 
 // Load environment variables for localhost
 try {
-	env(__dirname + '/.env');
+    env(__dirname + '/.env');
 } catch (e) {}
 
 var app = express();
@@ -19,25 +19,34 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
-	res.render('index', {appId: process.env.APPID, loApp: process.env.LOAPP});
+    res.render('index', {
+        appId: process.env.APPID,
+        loApp: process.env.LOAPP
+    });
 });
 
 app.get('/oauthcallback', function(req, res) {
-	res.render('oauthcallback', {});
+    res.render('oauthcallback', {});
 });
 
 // Create an HTTP service
+//
 http.createServer(app).listen(port);
 console.log("Server listening for HTTP connections on port ", port);
 
-// Create an HTTPS service if the certs are present
+// Create a localmachine HTTPS service if the certs are present
+// ftw: http://blog.matoski.com/articles/node-express-generate-ssl/
 try {
-	var options = {
-	  key: fs.readFileSync('key.pem'),
-	  cert: fs.readFileSync('key-cert.pem')
-	};
-	https.createServer(options, app).listen(https_port);
-	console.log("Server listening for HTTPS connections on port ", https_port);
+    var secureServer = https.createServer({
+        key: fs.readFileSync('./ssl/server.key'),
+        cert: fs.readFileSync('./ssl/server.crt'),
+        ca: fs.readFileSync('./ssl/ca.crt'),
+        requestCert: true,
+        rejectUnauthorized: false
+    }, app).listen(https_port, function() {
+        console.log("Secure Express server listening on port ", https_port);
+    });
+
 } catch (e) {
-	console.error("Security certs not found, HTTPS not available");
+    console.error("Security certs not found, HTTPS not available for localhost");
 }

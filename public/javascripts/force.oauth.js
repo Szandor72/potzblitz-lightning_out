@@ -6,6 +6,23 @@
  */
 var force = (function () {
 
+    /**
+     * Convenience function to execute a SOQL query
+     * @param soql
+     * @param successHandler
+     * @param errorHandler
+     */
+    function query(soql, successHandler, errorHandler) {
+        request(
+            {
+                path: '/services/data/' + apiVersion + '/query',
+                params: {q: soql}
+            },
+            successHandler,
+            errorHandler
+        );
+    }    
+
     // The login url
     var loginUrl = 'https://login.salesforce.com',
 
@@ -384,6 +401,7 @@ var force = (function () {
         oauthCallback: oauthCallback,
         invalidateToken: invalidateToken,
         getOauth: getOauth // Needed to expose to Lightning Out!
+        ,query: query
     };
 
 }());

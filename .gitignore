@@ -1,3 +1,6 @@
+#local ssl
+ssl
+
 # Logs
 logs
 *.log
@@ -29,8 +32,11 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
-# Keys & Certs
-*.pem
 
 # Env files for localhost
 *.env
+
+nlg.js
+del.html
+forFormat.js
+forFormat.html

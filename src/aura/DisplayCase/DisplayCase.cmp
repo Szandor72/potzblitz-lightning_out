@@ -1,0 +1,27 @@
+<aura:component controller="DisplayCaseController" access="GLOBAL">
+    <b>Display Case Lightning Component</b>
+    <br/>
+    <br/>
+    <aura:registerEvent name="DisplayCaseEvt" type="c:DisplayCaseEvt" />
+    <aura:handler event="c:DisplayCaseEvt" action="{!c.handleApplicationEventFired}" />
+    <aura:attribute access="GLOBAL" name="recordId" type="String" />
+    <p>
+        <ui:button label="call js on Heroku: cmp btn" press="{!c.howdy}" />
+        <!--        press="{!c.fireApplicationEvent}" />-->
+    </p>
+    <br/>
+    <aura:attribute name="record" type="Case" />
+    <br/>
+    <ui:outputText value="{!v.record.Id}" />
+    <br/>
+    <ui:outputText value="{!v.record.Subject}" />
+    <br/>
+    <ui:outputText value="{!v.record.Description}" />
+    <br/>
+    <ui:outputText value="{!v.record.Status}" />
+    <!--    
+<aura:iteration items="{!v.record}" var="case">
+        {!case.Id} {!case.Subject} {!case.Description} {!case.Status}    
+</aura:iteration>    
+-->
+</aura:component>
